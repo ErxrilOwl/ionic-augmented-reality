@@ -1,5 +1,6 @@
 var fs = require('fs');
 var path = require('path');
+var rimraf = require("rimraf");
 
 function copyFileSync( source, target ) {
 
@@ -58,4 +59,14 @@ module.exports = function(ctx) {
     fs.mkdirSync("./src/assets/fonts/josefin");
   copyFolderRecursiveSync("./node_modules/typeface-josefin-sans/files", "./src/assets/fonts/josefin");
   copyFileSync("./node_modules/typeface-josefin-sans/index.css", "./src/assets/fonts/josefin");
+
+  //Copy custom ar utils plugin wrapper
+  console.log("\tCopy ar utils custom wrapper in ionic native folder");
+  if (!fs.existsSync("./node_modules/@ionic-native/ar-utils"))
+    fs.mkdirSync("./node_modules/@ionic-native/ar-utils");
+  if (fs.existsSync("./node_modules/ionic-ar-utils-wrapper/ar-utils"))
+  {
+    copyFolderRecursiveSync("./node_modules/ionic-ar-utils-wrapper/ar-utils", "./node_modules/@ionic-native/ar-utils");
+    rimraf.sync("./node_modules/ionic-ar-utils-wrapper/ar-utils");
+  }
 };

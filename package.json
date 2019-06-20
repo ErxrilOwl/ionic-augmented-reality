@@ -43,6 +43,7 @@
     "cordova-browser": "6.0.0",
     "cordova-ios": "5.0.0",
     "cordova-plugin-advanced-http": "2.0.9",
+    "cordova-plugin-ar-utils": "git+ssh://git@github.com/KitCarson88/cordova-plugin-ar-utils.git",
     "cordova-plugin-camera-preview": "0.10.0",
     "cordova-plugin-device-motion": "2.0.1",
     "cordova-plugin-file": "6.0.1",
@@ -58,6 +59,7 @@
     "core-js": "^2.5.4",
     "es6-promise-plugin": "4.2.2",
     "flux-standard-action": "^2.1.0",
+    "ionic-ar-utils-wrapper": "git+ssh://git@github.com/KitCarson88/ionic-ar-utils-wrapper.git",
     "redux": "^4.0.1",
     "redux-logger": "^3.0.6",
     "redux-persist": "^5.10.0",
@@ -123,7 +125,8 @@
       "cordova-plugin-gyroscope": {},
       "cordova-plugin-magnetometer": {},
       "cordova-plugin-camera-preview": {},
-      "cordova-plugin-geolocation": {}
+      "cordova-plugin-geolocation": {},
+      "cordova-plugin-ar-utils": {}
     },
     "platforms": [
       "ios",
