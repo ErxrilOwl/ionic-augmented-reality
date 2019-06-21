@@ -234,7 +234,7 @@ export class StoreModule
 
     let logger = createLogger({ level: 'log' });
 
-    const middlewares = [ offlineMiddleware, offlineTimeout(), dataNormalizer(), sagaMiddleware, logger ];
+    const middlewares = [ offlineMiddleware, offlineTimeout(), dataNormalizer(), sagaMiddleware];//, logger ];
 
     //ENHANCERS
     const enhancers = devTools.isEnabled() ? [devTools.enhancer(), offlineEnhanceStore] : [offlineEnhanceStore];

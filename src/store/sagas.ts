@@ -1,3 +1,4 @@
+import { ReflectiveInjector } from '@angular/core';
 import { select, call, put, takeEvery, takeLatest, take, all } from 'redux-saga/effects';
 
 import { PoiApiActions } from './poi-api/poi.actions';
@@ -11,6 +12,8 @@ import { GpsCoordinatesDTO } from '../entities/dto/gpsInfoDTO';
 import { Poi } from '../entities/form/poi';
 import { FusionSensorsDTO } from '../entities/dto/fusionSensorsDTO';
 
+import { ArUtils } from '@ionic-native/ar-utils/ngx';
+
 const getGpsCoordinates = state => state.gps.coordinates;
 const getFilteredGpsCoordinates = state => state.gps.distanceFilteredCoordinates;
 const getPois = state => state.poi.poi;
@@ -21,6 +24,11 @@ const getFov = state => state.ar.cameraFov;
 function* filterGpsCoordinate() {
     console.log("Registering saga filterGpsCoordinate on gps/SET_COORDINATES");
 
+    const injector = ReflectiveInjector.resolveAndCreate([
+        ArUtils
+    ]);
+    const arUtils = injector.get(ArUtils);
+
     yield takeEvery("SET_COORDINATES", function* () {
         const currentGpsCoordinates: GpsCoordinatesDTO = yield select(getGpsCoordinates);
         const filteredGpsCoordinates: GpsCoordinatesDTO = yield select(getFilteredGpsCoordinates);
@@ -30,6 +38,8 @@ function* filterGpsCoordinate() {
             if (filteredGpsCoordinates)
             {
                 let distance: number = AugmentedRealityUtils.calculateDistance(filteredGpsCoordinates.latitude, filteredGpsCoordinates.longitude, currentGpsCoordinates.latitude, currentGpsCoordinates.longitude);
+                let prova = yield arUtils.calculateDistance("prova");
+                console.log("prova: ", prova);
 
                 distance *= 1000; //distance in meters
 
