@@ -62,11 +62,9 @@ module.exports = function(ctx) {
 
   //Copy custom ar utils plugin wrapper
   console.log("\tCopy ar utils custom wrapper in ionic native folder");
-  if (!fs.existsSync("./node_modules/@ionic-native/ar-utils"))
-    fs.mkdirSync("./node_modules/@ionic-native/ar-utils");
   if (fs.existsSync("./node_modules/ionic-ar-utils-wrapper/ar-utils"))
   {
-    copyFolderRecursiveSync("./node_modules/ionic-ar-utils-wrapper/ar-utils", "./node_modules/@ionic-native/ar-utils");
-    rimraf.sync("./node_modules/ionic-ar-utils-wrapper/ar-utils");
+    copyFolderRecursiveSync("./node_modules/ionic-ar-utils-wrapper/ar-utils", "./node_modules/@ionic-native");
+    rimraf.sync("./node_modules/ionic-ar-utils-wrapper");
   }
 };
