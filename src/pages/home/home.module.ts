@@ -4,6 +4,10 @@ import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { createTranslateLoader } from '../../app/app.module';
+import { HttpClient } from '@angular/common/http';
+
 import { HomePage } from './home.page';
 
 @NgModule({
@@ -11,6 +15,14 @@ import { HomePage } from './home.page';
     CommonModule,
     FormsModule,
     IonicModule,
+    TranslateModule.forChild({
+      loader: {
+           provide: TranslateLoader,
+           useFactory: (createTranslateLoader),
+           deps: [ HttpClient ]
+         }
+      }
+    ),
     RouterModule.forChild([
       {
         path: '',
