@@ -13,7 +13,29 @@ import { TranslateService } from '@ngx-translate/core';
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss']
 })
-export class AppComponent {
+export class AppComponent
+{
+  public appPages = [
+    {
+      title: 'Home',
+      url: '/home',
+      icon: 'assets/icon/home.svg',
+      direction: 'root'
+    },
+    {
+      title: 'Map',
+      url: '/map',
+      icon: 'armap',
+      direction: 'root'
+    },
+    {
+      title: 'AR',
+      url: '/augmented-reality',
+      icon: 'assets/icon/ar.svg',
+      direction: 'forward'
+    }
+  ];
+
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
