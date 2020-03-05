@@ -1,33 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
-import { constants } from '../../utils/constants';
+import { select } from '@angular-redux/store';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'splash',
   templateUrl: './splash.component.html',
   styleUrls: ['./splash.component.scss'],
 })
-export class SplashComponent implements OnInit
+export class SplashComponent
 {
-  fadeInAnimation: boolean;
-  fadeOutAnimation: boolean;
-
-  constructor()
-  {
-    this.fadeInAnimation = false;
-    this.fadeOutAnimation = false;
-  }
-
-  ngOnInit()
-  {
-    setTimeout(() =>
-    {
-      this.fadeInAnimation = true;
-    }, constants.SPLASH_ANIMATION_FADE_IN_DELAY);
-
-    setTimeout(() =>
-    {
-      this.fadeOutAnimation = true;
-    }, constants.SPLASH_ANIMATION_FADE_OUT_DELAY);
-  }
+  @select(["splash"])
+  splashState$: Observable<'active' | 'fadeIn' | 'animation' | 'fadeOut' | 'inactive'>;
 }

@@ -1,5 +1,5 @@
-<ion-content [ngClass]="{fadeOut: fadeOutAnimation}">
-    <div class="splashContainer" [ngClass]="{fadeIn: fadeInAnimation}">
+<ion-content *ngIf="(splashState$ | async) as state" [ngClass]="{fadeOut: state === 'fadeOut'}">
+    <div class="splashContainer" [ngClass]="{fadeIn: state === 'fadeIn'}">
       <div class="content">
         <ion-icon name="armarker"></ion-icon>
         <div class="f-30 f-family-josefin f-weight-600">
