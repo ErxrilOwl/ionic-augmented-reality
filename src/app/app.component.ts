@@ -22,7 +22,7 @@ export class AppComponent
       icon: 'assets/icon/home.svg',
       direction: 'root'
     },
-    {
+    /*{
       title: 'Map',
       url: '/map',
       icon: 'armap',
@@ -33,7 +33,7 @@ export class AppComponent
       url: '/augmented-reality',
       icon: 'assets/icon/ar.svg',
       direction: 'forward'
-    }
+    }*/
   ];
 
   constructor(
@@ -42,7 +42,8 @@ export class AppComponent
     private statusBar: StatusBar,
     public globalization: Globalization,
     public translate: TranslateService,
-  ) {
+  )
+  {
     this.initializeApp();
   }
 
@@ -53,24 +54,25 @@ export class AppComponent
       this.statusBar.styleDefault();
       this.splashScreen.hide();
 
-       // this language will be used as a fallback when a translation isn't found in the current language
-       this.translate.setDefaultLang(defaultLanguage);
+      // this language will be used as a fallback when a translation isn't found in the current language
+      this.translate.setDefaultLang(defaultLanguage);
 
-       if ((<any>window).cordova)
-       {
-         this.globalization.getPreferredLanguage().then(result => {
-           var language = this.getSuitableLanguage(result.value);
-           this.translate.use(language);
-           sysOptions.systemLanguage = language;
-         });
-       }
-       else
-       {
-         let browserLanguage = this.translate.getBrowserLang() || defaultLanguage;
-         var language = this.getSuitableLanguage(browserLanguage);
-         this.translate.use(language);
-         sysOptions.systemLanguage = language;
-       }
+      if ((<any> window).cordova)
+      {
+        this.globalization.getPreferredLanguage().then(result =>
+        {
+          var language = this.getSuitableLanguage(result.value);
+          this.translate.use(language);
+          sysOptions.systemLanguage = language;
+        });
+      }
+      else
+      {
+        let browserLanguage = this.translate.getBrowserLang() || defaultLanguage;
+        var language = this.getSuitableLanguage(browserLanguage);
+        this.translate.use(language);
+        sysOptions.systemLanguage = language;
+      }
     });
   }
 

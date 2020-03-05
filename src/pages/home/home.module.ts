@@ -10,19 +10,21 @@ import { HttpClient } from '@angular/common/http';
 
 import { HomePage } from './home.page';
 
+import { MenuOverlayModule } from '../../components/menu-overlay/menu-overlay.module';
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
+    MenuOverlayModule,
     TranslateModule.forChild({
       loader: {
-           provide: TranslateLoader,
-           useFactory: (createTranslateLoader),
-           deps: [ HttpClient ]
-         }
+        provide: TranslateLoader,
+        useFactory: (createTranslateLoader),
+        deps: [HttpClient]
       }
-    ),
+    }),
     RouterModule.forChild([
       {
         path: '',
@@ -32,4 +34,4 @@ import { HomePage } from './home.page';
   ],
   declarations: [HomePage]
 })
-export class HomePageModule {}
+export class HomePageModule { }

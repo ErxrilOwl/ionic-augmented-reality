@@ -1,8 +1,8 @@
 {
   "name": "AugmentedReality",
   "version": "0.0.1",
-  "author": "Ionic Framework",
-  "homepage": "https://ionicframework.com/",
+  "author": "Simone Colazzo",
+  "homepage": "https://github.com/KitCarson88",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
