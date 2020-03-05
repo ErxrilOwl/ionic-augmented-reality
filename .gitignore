@@ -37,7 +37,7 @@ package-lock.json
 # Custom rules
 src/assets/fonts/roboto
 src/assets/fonts/josefin
-resources/android/icon
-resources/android/splash
-resources/ios/icon
-resources/ios/splash
+#resources/android/icon
+#resources/android/splash
+#resources/ios/icon
+#resources/ios/splash
