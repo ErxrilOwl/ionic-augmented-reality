@@ -1,4 +1,5 @@
 export { SpinnerActions } from './spinner/spinner.actions';
+export { SplashActions } from './splash/splash.actions';
 /*export { GpsActions } from './gps/gps.actions';
 export { AccelerometerActions } from './accelerometer/accelerometer.actions';
 export { GyroscopeActions } from './gyroscope/gyroscope.actions';

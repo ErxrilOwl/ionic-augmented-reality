@@ -1,7 +1,6 @@
 import { Action } from 'redux';
 
 // import every model
-import { SpinnerState, INITIAL_STATE_SPINNER } from './spinner/spinner.model';
 /*import { GpsState, INITIAL_STATE_GPS } from './gps/gps.model';
 import { AccelerometerState, INITIAL_STATE_ACCELEROMETER } from './accelerometer/accelerometer.model';
 import { GyroscopeState, INITIAL_STATE_GYROSCOPE } from './gyroscope/gyroscope.model';
@@ -11,7 +10,8 @@ import { ARState, INITIAL_STATE_AR } from './ar-infos/ar.model';*/
 
 export interface AppState
 {
-    spinner: SpinnerState,
+    spinner: boolean,
+    splash: string;
     /*gps: GpsState,
     accelerometer: AccelerometerState,
     gyroscope: GyroscopeState,
@@ -21,7 +21,8 @@ export interface AppState
 }
 
 export const INITIAL_STATE: AppState = {
-    spinner: INITIAL_STATE_SPINNER,
+    spinner: false,
+    splash: 'active'
     /*gps: INITIAL_STATE_GPS,
     accelerometer: INITIAL_STATE_ACCELEROMETER,
     gyroscope: INITIAL_STATE_GYROSCOPE,

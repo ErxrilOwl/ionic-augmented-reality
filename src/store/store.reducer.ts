@@ -9,6 +9,7 @@ import { combineReducers } from "redux";
 import { AppState, INITIAL_STATE } from './store.model';
 
 import { spinnerReducer } from './spinner/spinner.reducer';
+import { splashReducer } from './splash/splash.reducer';
 /*import { gpsReducer } from "./gps/gps.reducer";
 import { accelerometerReducer } from "./accelerometer/accelerometer.reducer";
 import { gyroscopeReducer } from "./gyroscope/gyroscope.reducer";
@@ -48,6 +49,7 @@ export function rootReducer(storage)
   return reduceReducers(
     combineReducers({
       spinner: spinnerReducer,
+      splash: splashReducer
       /*gps: gpsReducer,
       accelerometer: accelerometerReducer,
       gyroscope: gyroscopeReducer,

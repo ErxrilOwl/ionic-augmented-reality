@@ -14,26 +14,28 @@ import { AppState, INITIAL_STATE } from "./store.model";
 import
 {
   SpinnerActions,
+  SplashActions
 } from "./index";
 
-//import { RootEpics } from './epics';
+import { RootEpics } from './epics';
 //import rootSaga from './sagas';
 
 //import { DiscoverDataEpics } from './discover-data/discover-data.epics';
 //import { WsEpics } from './ws/ws.epics';
+import { SplashEpics } from './splash/splash.epics';
 
 //import { StorageService } from "../services/storage.service";
 
 //import { Converter } from "../util/converter";
 
 const ACTIONS = [
-  SpinnerActions
+  SpinnerActions,
+  SplashActions
 ];
 
 const RESOLVERS = [
-  /*RootEpics,
-  DiscoverDataEpics,
-  WsEpics*/
+  RootEpics,
+  SplashEpics
 ];
 
 @NgModule({
@@ -49,7 +51,7 @@ export class StoreModule
     public ngRedux: NgRedux<AppState>,
     devTools: DevToolsExtension,
     //storageService: StorageService,
-    //rootEpics: RootEpics,
+    rootEpics: RootEpics,
     //ngReduxRouter: NgReduxRouter,
   )
   {
@@ -105,7 +107,7 @@ export class StoreModule
     persistStore(ngRedux);
 
     //Executing epics
-    //epicMiddleware.run(rootEpics.createEpics());
+    epicMiddleware.run(rootEpics.createEpics());
 
     //Executing sagas
     //sagaMiddleware.run(rootSaga);

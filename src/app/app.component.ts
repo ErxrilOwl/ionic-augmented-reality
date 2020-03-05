@@ -3,7 +3,6 @@ import { Platform } from '@ionic/angular';
 
 import { select, NgRedux } from "@angular-redux/store";
 import { Observable } from "rxjs";
-import { first } from 'rxjs/operators';
 
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
@@ -12,7 +11,7 @@ import { Globalization } from '@ionic-native/globalization/ngx';
 import { defaultLanguage, availableLanguages, sysOptions } from './i18n.constants';
 import { TranslateService } from '@ngx-translate/core';
 
-import { constants } from '../utils/constants';
+import { AppState } from '../store/store.model';
 
 @Component({
   selector: 'app-root',
@@ -21,9 +20,10 @@ import { constants } from '../utils/constants';
 })
 export class AppComponent
 {
-  showSplash: boolean = true;
+  @select(["splash"])
+  splashState$: Observable<string>;
 
-  @select(["spinner", "visible"])
+  @select(["spinner"])
   showSpinner$: Observable<boolean>;
 
   public appPages = [
@@ -51,8 +51,9 @@ export class AppComponent
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    public globalization: Globalization,
-    public translate: TranslateService,
+    private globalization: Globalization,
+    private translate: TranslateService,
+    private ngRedux: NgRedux<AppState>
   )
   {
     this.initializeApp();
@@ -64,6 +65,7 @@ export class AppComponent
     {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+      this.ngRedux.dispatch({ type: 'HIDE_SPLASH' });
 
       // this language will be used as a fallback when a translation isn't found in the current language
       this.translate.setDefaultLang(defaultLanguage);
@@ -84,11 +86,6 @@ export class AppComponent
         this.translate.use(language);
         sysOptions.systemLanguage = language;
       }
-
-      setTimeout(() =>
-      {
-        this.showSplash = false;
-      }, constants.SPLASH_TIMEOUT);
     });
   }
 

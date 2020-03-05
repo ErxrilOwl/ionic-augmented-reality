@@ -1,4 +1,6 @@
-<splash *ngIf="showSplash"></splash>
+<ng-container *ngIf="(splashState$ | async) as splashState">
+  <splash *ngIf="splashState !== 'inactive'"></splash>
+</ng-container>
 <spinner *ngIf="showSpinner$ | async" [withContainer]="true"></spinner>
 
 <ion-app>
