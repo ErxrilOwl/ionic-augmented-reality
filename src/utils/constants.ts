@@ -1,5 +1,6 @@
 export const constants = {
     //Configuration
+    SERVICE_TIMEOUT: 5,
     SPLASH_ANIMATION_FADE_IN_DELAY: 500,
     SPLASH_ANIMATION_DELAY: 1500,
     SPLASH_ANIMATION_FADE_OUT_DELAY: 2000
