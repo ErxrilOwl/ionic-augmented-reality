@@ -1,12 +1,18 @@
 import { Component } from '@angular/core';
-
 import { Platform } from '@ionic/angular';
+
+import { select, NgRedux } from "@angular-redux/store";
+import { Observable } from "rxjs";
+import { first } from 'rxjs/operators';
+
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 import { Globalization } from '@ionic-native/globalization/ngx';
 import { defaultLanguage, availableLanguages, sysOptions } from './i18n.constants';
 import { TranslateService } from '@ngx-translate/core';
+
+import { constants } from '../utils/constants';
 
 @Component({
   selector: 'app-root',
@@ -15,6 +21,11 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class AppComponent
 {
+  showSplash: boolean = true;
+
+  @select(["spinner", "visible"])
+  showSpinner$: Observable<boolean>;
+
   public appPages = [
     {
       title: 'Home',
@@ -73,6 +84,11 @@ export class AppComponent
         this.translate.use(language);
         sysOptions.systemLanguage = language;
       }
+
+      setTimeout(() =>
+      {
+        this.showSplash = false;
+      }, constants.SPLASH_TIMEOUT);
     });
   }
 

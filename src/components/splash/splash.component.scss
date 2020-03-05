@@ -1,0 +1,51 @@
+@import '../../styles/colors';
+@import '../../styles/fonts';
+@import '../../styles/mixins';
+@import '../../styles/responsive';
+
+ion-content {
+    width: 100%;
+    height: 100%;
+    z-index: 10000000;
+}
+
+.splashContainer {
+    background-color: $c-white;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    @include transition(background-color .3s linear);
+
+    .content {
+        width: 100%;
+        @include vertical-centering-transform(absolute);
+
+        ion-icon {
+            color: $c-red;
+            font-size: 10rem !important;
+            margin-bottom: 4rem;
+            @include transition(color .3s linear);
+
+            @include small-mobile {
+                font-size: 8rem !important;
+            }
+        }
+
+        div {
+            color: $c-water-green;
+            @include transition(color .3s linear);
+
+            @include small-mobile {
+                font-size: $f-size-8 !important;
+            }
+        }
+    }
+
+    &.colorFade {
+        background-color: $c-water-green;
+
+        ion-icon, div {
+            color: $c-white !important;
+        }
+    }
+}

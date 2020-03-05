@@ -51,6 +51,11 @@ h5 {
     font-size: $f-size-4 !important;
 }
 
+.centering-container {
+    @include vertical-centering-transform(absolute);
+    @include horizontal-centering-container('.centered-container');
+}
+
 ion-toolbar.ar-toolbar {
     --background: #{$ar-toolbar-background-color} !important;
     --min-height: #{$ar-toolbar-height} !important;

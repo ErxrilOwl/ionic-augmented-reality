@@ -14,7 +14,13 @@ import { Globalization } from '@ionic-native/globalization/ngx';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
-export function createTranslateLoader(http: HttpClient) {
+import { SplashModule } from '../components/splash/splash.module';
+import { SpinnerModule } from '../components/spinner/spinner.module';
+
+import { StoreModule } from '../store/store.module';
+
+export function createTranslateLoader(http: HttpClient)
+{
   return new TranslateHttpLoader(http, '../assets/i18n/', '.json');
 }
 
@@ -26,6 +32,9 @@ export function createTranslateLoader(http: HttpClient) {
   imports: [
     BrowserModule,
     HttpClientModule,
+    StoreModule,
+    SplashModule,
+    SpinnerModule,
     IonicModule.forRoot(),
     TranslateModule.forRoot({
       loader: {
@@ -46,4 +55,4 @@ export function createTranslateLoader(http: HttpClient) {
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }

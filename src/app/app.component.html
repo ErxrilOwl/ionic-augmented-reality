@@ -1,3 +1,6 @@
+<splash *ngIf="showSplash"></splash>
+<spinner *ngIf="showSpinner$ | async" [withContainer]="true"></spinner>
+
 <ion-app>
   <ion-split-pane contentId="main-content">
     <ion-menu contentId="main-content" swipeGesture="false" type="reveal" class="ar-menu">
