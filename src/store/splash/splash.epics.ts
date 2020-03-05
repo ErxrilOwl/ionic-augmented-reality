@@ -21,9 +21,9 @@ export class SplashEpics
         return (action$, _) => action$.pipe(ofType(SplashActions.HIDE_SPLASH),
             mergeMap(_ => concat(
                 of(({ type: SplashActions.SET_SPLASH_STATE, payload: 'fadeIn' })).pipe(delay(constants.SPLASH_ANIMATION_FADE_IN_DELAY)),
-                of(({ type: SplashActions.SET_SPLASH_STATE, payload: 'animation' })).pipe(delay(constants.SPLASH_ANIMATION_FADE_IN_DELAY)),
+                of(({ type: SplashActions.SET_SPLASH_STATE, payload: 'animation' })).pipe(delay(constants.SPLASH_ANIMATION_DELAY)),
                 of(({ type: SplashActions.SET_SPLASH_STATE, payload: 'fadeOut' })).pipe(delay(constants.SPLASH_ANIMATION_FADE_OUT_DELAY)),
-                of(({ type: SplashActions.SET_SPLASH_STATE, payload: 'inactive' })).pipe(delay(300))
+                of(({ type: SplashActions.SET_SPLASH_STATE, payload: 'inactive' })).pipe(delay(800))
             ))
         );
     }
