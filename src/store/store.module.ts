@@ -14,14 +14,17 @@ import { AppState, INITIAL_STATE } from "./store.model";
 import
 {
   SpinnerActions,
-  SplashActions
+  SplashActions,
+  AccelerometerActions,
+  GyroscopeActions,
+  MagnetometerActions,
+  //PoiApiActions,
+  ARActions
 } from "./index";
 
 import { RootEpics } from './epics';
 //import rootSaga from './sagas';
 
-//import { DiscoverDataEpics } from './discover-data/discover-data.epics';
-//import { WsEpics } from './ws/ws.epics';
 import { SplashEpics } from './splash/splash.epics';
 
 //import { StorageService } from "../services/storage.service";
@@ -30,7 +33,12 @@ import { SplashEpics } from './splash/splash.epics';
 
 const ACTIONS = [
   SpinnerActions,
-  SplashActions
+  SplashActions,
+  AccelerometerActions,
+  GyroscopeActions,
+  MagnetometerActions,
+  //PoiApiActions,
+  ARActions
 ];
 
 const RESOLVERS = [

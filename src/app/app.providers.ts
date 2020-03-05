@@ -11,8 +11,9 @@ import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { DeviceMotion } from '@ionic-native/device-motion/ngx';
 import { Gyroscope } from '@ionic-native/gyroscope/ngx';
 import { CameraPreview } from '@ionic-native/camera-preview/ngx';
+import { Injectable } from "@angular/core";
 
-
+@Injectable()
 export class HTTPMock
 {
     constructor(private http: HttpClient) { }
@@ -60,6 +61,7 @@ export class HTTPMock
     }
 }
 
+@Injectable()
 export class NetworkMock {
     public type: string = 'unknowkn';
 
@@ -71,6 +73,7 @@ export class NetworkMock {
     }
 }
 
+@Injectable()
 export class NativeStorageMock {
     setItem(reference: string, value: any): Promise<any>
     {
@@ -97,6 +100,7 @@ export class NativeStorageMock {
     }
 }
 
+@Injectable()
 export class ScreenOrientationMock {
     public ORIENTATIONS = {
         PORTRAIT_PRIMARY: "",
@@ -116,6 +120,7 @@ export class ScreenOrientationMock {
     }
 }
 
+@Injectable()
 export class DiagnosticMock {
     isCameraPresent(): Promise<any> {
         return new Promise((resolve, reject) => {
@@ -160,6 +165,7 @@ export class DiagnosticMock {
     }
 }
 
+@Injectable()
 export class LocationAccuracyMock {
     public REQUEST_PRIORITY_HIGH_ACCURACY: number = 4;
 
@@ -176,6 +182,7 @@ export class LocationAccuracyMock {
     }
 }
 
+@Injectable()
 export class GeolocationMock {
     watchPosition(options?: any): Observable<any>
     {
@@ -202,6 +209,7 @@ export class GeolocationMock {
     }
 }
 
+@Injectable()
 export class DeviceMotionMock {
     watchAcceleration(options?: any): Observable<any>
     {
@@ -226,6 +234,7 @@ export class DeviceMotionMock {
     }
 }
 
+@Injectable()
 export class GyroscopeMock {
     watch(options?: any): Observable<any>
     {
@@ -250,6 +259,7 @@ export class GyroscopeMock {
     }
 }
 
+@Injectable()
 export class CameraPreviewMock {
     startCamera(options?: any): Promise<any>
     {

@@ -32,11 +32,11 @@ import { SpinnerModule } from '../components/spinner/spinner.module';
 import { Api } from '../providers/api/api';
 
 //Services
-import { NetworkService } from '../services/network.service';
+//import { NetworkService } from '../services/network.service';
 import { StorageService } from '../services/storage.service';
 import { SensorsService } from '../services/sensors.service';
-import { AlertService } from '../services/alert.service';
-import { ToastService } from '../services/toast.service';
+//import { AlertService } from '../services/alert.service';
+//import { ToastService } from '../services/toast.service';
 
 //Redux store
 import { StoreModule } from '../store/store.module';
@@ -96,11 +96,11 @@ export function createTranslateLoader(http: HttpClient)
     {provide: Gyroscope, useClass: getGyroscope()},
     {provide: CameraPreview, useClass: getCameraPreview()},
     Globalization,  //Globalization not mocked. Calls managed directly in app.component
-    NetworkService,
+    //NetworkService,
     StorageService,
     SensorsService,
-    AlertService,
-    ToastService,
+    //AlertService,
+    //ToastService,
     Api,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],

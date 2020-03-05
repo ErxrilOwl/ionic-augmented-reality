@@ -10,12 +10,12 @@ import { AppState, INITIAL_STATE } from './store.model';
 
 import { spinnerReducer } from './spinner/spinner.reducer';
 import { splashReducer } from './splash/splash.reducer';
-/*import { gpsReducer } from "./gps/gps.reducer";
+import { gpsReducer } from "./gps/gps.reducer";
 import { accelerometerReducer } from "./accelerometer/accelerometer.reducer";
 import { gyroscopeReducer } from "./gyroscope/gyroscope.reducer";
 import { magnetometerReducer } from "./magnetometer/magnetometer.reducer";
-import { poiReducer } from "./poi-api/poi.reducer";
-import { arReducer } from './ar-infos/ar.reducer';*/
+//import { poiReducer } from "./poi-api/poi.reducer";
+import { arReducer } from './ar-infos/ar.reducer';
 
 export default function reduceReducers(...reducers)
 {
@@ -49,13 +49,13 @@ export function rootReducer(storage)
   return reduceReducers(
     combineReducers({
       spinner: spinnerReducer,
-      splash: splashReducer
-      /*gps: gpsReducer,
+      splash: splashReducer,
+      gps: gpsReducer,
       accelerometer: accelerometerReducer,
       gyroscope: gyroscopeReducer,
       magnetometer: magnetometerReducer,
-      poi: poiReducer,
-      ar: arReducer*/
+      //poi: poiReducer,
+      ar: arReducer
     }),
     mainReducer
   );

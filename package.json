@@ -22,6 +22,7 @@
     "@angular/router": "~9.0.5",
     "@ionic-native/camera-preview": "^5.22.0",
     "@ionic-native/core": "^5.22.0",
+    "@ionic-native/device": "^5.22.0",
     "@ionic-native/device-motion": "^5.22.0",
     "@ionic-native/diagnostic": "^5.22.0",
     "@ionic-native/geolocation": "^5.22.0",
