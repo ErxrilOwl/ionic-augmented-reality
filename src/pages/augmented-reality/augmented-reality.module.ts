@@ -1,10 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-
+import { RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
-
-import { AugmentedRealityPageRoutingModule } from './augmented-reality-routing.module';
 
 import { AugmentedRealityPage } from './augmented-reality.page';
 
@@ -13,8 +11,13 @@ import { AugmentedRealityPage } from './augmented-reality.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    AugmentedRealityPageRoutingModule
+    RouterModule.forChild([
+      {
+        path: '',
+        component: AugmentedRealityPage
+      }
+    ])
   ],
   declarations: [AugmentedRealityPage]
 })
-export class AugmentedRealityPageModule {}
+export class AugmentedRealityPageModule { }

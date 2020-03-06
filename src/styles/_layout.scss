@@ -95,6 +95,8 @@ ion-toolbar.ar-toolbar {
         }
 
         ion-back-button {
+            --color: #{$ar-back-button-color};
+            --icon-font-size: #{$ar-back-button-font-size} !important;
             width: 100% !important;
             height: 100% !important;
             --margin-start: 0 !important;
