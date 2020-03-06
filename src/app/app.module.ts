@@ -41,7 +41,8 @@ import { SensorsService } from '../services/sensors.service';
 //Redux store
 import { StoreModule } from '../store/store.module';
 
-import {
+import
+{
   getHTTP,
   getNetwork,
   getNativeStorage,
@@ -70,7 +71,9 @@ export function createTranslateLoader(http: HttpClient)
     StoreModule,
     SplashModule,
     SpinnerModule,
-    IonicModule.forRoot(),
+    IonicModule.forRoot({
+      mode: 'md'
+    }),
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -85,16 +88,16 @@ export function createTranslateLoader(http: HttpClient)
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: HTTP, useClass: getHTTP()},    //HTTP mocked with empty functions. Calls managed with mocked json data
-    {provide: Network, useClass: getNetwork()},
-    {provide: NativeStorage, useClass: getNativeStorage()},
-    {provide: ScreenOrientation, useClass: getScreenOrientation()},
-    {provide: Diagnostic, useClass: getDiagnostic()},
-    {provide: LocationAccuracy, useClass: getLocationAccuracy()},
-    {provide: Geolocation, useClass: getGeolocation()},
-    {provide: DeviceMotion, useClass: getDeviceMotion()},
-    {provide: Gyroscope, useClass: getGyroscope()},
-    {provide: CameraPreview, useClass: getCameraPreview()},
+    { provide: HTTP, useClass: getHTTP() },    //HTTP mocked with empty functions. Calls managed with mocked json data
+    { provide: Network, useClass: getNetwork() },
+    { provide: NativeStorage, useClass: getNativeStorage() },
+    { provide: ScreenOrientation, useClass: getScreenOrientation() },
+    { provide: Diagnostic, useClass: getDiagnostic() },
+    { provide: LocationAccuracy, useClass: getLocationAccuracy() },
+    { provide: Geolocation, useClass: getGeolocation() },
+    { provide: DeviceMotion, useClass: getDeviceMotion() },
+    { provide: Gyroscope, useClass: getGyroscope() },
+    { provide: CameraPreview, useClass: getCameraPreview() },
     Globalization,  //Globalization not mocked. Calls managed directly in app.component
     //NetworkService,
     StorageService,
