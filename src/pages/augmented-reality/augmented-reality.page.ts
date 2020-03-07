@@ -2,14 +2,28 @@ import { Component, OnInit, AfterViewInit } from '@angular/core';
 
 import { select } from "@angular-redux/store";
 import { Observable, Subject } from "rxjs";
-import { first } from "rxjs/operators";
+import { first, takeUntil, filter } from "rxjs/operators";
 
 import { StatusBar } from "@ionic-native/status-bar/ngx";
 import { ScreenOrientation } from "@ionic-native/screen-orientation/ngx";
 import { Diagnostic } from "@ionic-native/diagnostic/ngx";
 import { NativeStorage } from "@ionic-native/native-storage/ngx";
 
+import { SpinnerActions } from "../../store";
+
+import { SensorsService } from "../../services/sensors.service";
+
 import { constants } from '../../utils/constants';
+
+enum ARError {
+  INTERNAL_AR_ERROR = "INTERNAL_AR_ERROR",
+  SENSORS_ERROR = "SENSORS_ERROR",
+  GPS_NOT_ENABLED = "GPS_NOT_ENABLED",
+  LOCATION_PERMISSION_NOT_GRANTED = "LOCATION_PERMISSION_NOT_GRANTED",
+  CAMERA_PERMISSION_NOT_GRANTED = "CAMERA_PERMISSION_NOT_GRANTED",
+  CAMERA_SYSTEM_NOT_FOUND = "CAMERA_SYSTEM_NOT_FOUND",
+  LOCATION_SERVICE_DISABLED = "LOCATION_SERVICE_DISABLED"
+}
 
 @Component({
   selector: 'app-augmented-reality',
@@ -30,13 +44,24 @@ export class AugmentedRealityPage implements OnInit, AfterViewInit
   private preloadAuthorizationError: boolean = false;
   private authFlagsRetrieve$: Subject<void>;
 
+  @select(["accelerometer", "error"])
+  accelerometerCoordinatesError$: Observable<boolean>;
+  @select(["gyroscope", "error"])
+  gyroscopeCoordinatesError$: Observable<boolean>;
+  @select(["magnetometer", "error"])
+  magnetometerCoordinatesError$: Observable<boolean>;
+  private sensorsErrors$: Subject<void>;
+
   constructor(
     private statusBar: StatusBar,
     private screenOrientation: ScreenOrientation,
     private diagnosticService: Diagnostic,
-    private nativeStorage: NativeStorage
+    private nativeStorage: NativeStorage,
+    private spinnerActions: SpinnerActions,
+    private sensorsService: SensorsService
   ) {
     this.authFlagsRetrieve$ = new Subject<void>();
+    this.sensorsErrors$ = new Subject<void>();
   }
 
   async ngOnInit()
@@ -84,8 +109,56 @@ export class AugmentedRealityPage implements OnInit, AfterViewInit
     this.authFlagsRetrieve$.complete();
   }
 
-  ngAfterViewInit()
+  async ngAfterViewInit()
   {
-    
+    await this.authFlagsRetrieve$.toPromise();
+
+    if (this.preloadAuthorizationError)
+      this.manageARSystemsErrors(ARError.INTERNAL_AR_ERROR);
+
+    this.spinnerActions.showLoader();
+
+    //Start fused orientation service (accelerometer, gyroscope, magnetometer)
+    //The data is not subscribed yet. The app initially verifies if the device as accelerometer, gyroscope and magnetomer,
+    // and it verifies permissions too
+    this.sensorsService.startSensors();
+
+    this.accelerometerCoordinatesError$
+      .pipe(
+        takeUntil(this.sensorsErrors$),
+        takeUntil(this.gyroscopeCoordinatesError$),
+        takeUntil(this.magnetometerCoordinatesError$),
+        filter(data => data != null && data != undefined))
+      .subscribe(flag => {
+        if (flag) this.manageARSystemsErrors(ARError.SENSORS_ERROR);
+      });
+
+    this.gyroscopeCoordinatesError$
+      .pipe(
+        takeUntil(this.sensorsErrors$),
+        takeUntil(this.accelerometerCoordinatesError$),
+        takeUntil(this.magnetometerCoordinatesError$),
+        filter(data => data != null && data != undefined))
+      .subscribe(flag => {
+        if (flag) this.manageARSystemsErrors(ARError.SENSORS_ERROR);
+      });
+
+    this.magnetometerCoordinatesError$
+      .pipe(
+        takeUntil(this.sensorsErrors$),
+        takeUntil(this.accelerometerCoordinatesError$),
+        takeUntil(this.magnetometerCoordinatesError$),
+        filter(data => data != null && data != undefined))
+      .subscribe(flag => {
+        if (flag) this.manageARSystemsErrors(ARError.SENSORS_ERROR);
+      });
+
+    this.
+  }
+
+  private manageARSystemsErrors(errorType: ARError)
+  {
+    //this.spinnerService.dismissLoader();
+    //this.alertService.showSensorsError(errorType);
   }
 }

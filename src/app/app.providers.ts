@@ -1,6 +1,7 @@
 import { Observable } from 'rxjs';
 import { HttpClient } from "@angular/common/http";
 
+import { Device } from "@ionic-native/device/ngx";
 import { HTTP } from '@ionic-native/http/ngx';
 import { Network } from '@ionic-native/network/ngx';
 import { NativeStorage } from '@ionic-native/native-storage/ngx';
@@ -12,6 +13,19 @@ import { DeviceMotion } from '@ionic-native/device-motion/ngx';
 import { Gyroscope } from '@ionic-native/gyroscope/ngx';
 import { CameraPreview } from '@ionic-native/camera-preview/ngx';
 import { Injectable } from "@angular/core";
+
+@Injectable()
+export class DeviceMock
+{
+    cordova: string = "not available";
+    model: string = "not available";
+    platform: string = "not available";
+    uuid: string = "not available";
+    version: string = "not available";
+    manufacturer: string = "not available";
+    isVirtual: boolean = true;
+    serial: string = "not available";
+}
 
 @Injectable()
 export class HTTPMock
@@ -280,12 +294,15 @@ export class CameraPreviewMock {
     }
 }
 
-    /////////////////////Cordova verify function
 export function hasCordova(): boolean{
     return window.hasOwnProperty('cordova');
 }
 
-    /////////////////////Providers getters
+export function getDevice(): any
+{
+    return hasCordova()? Device : DeviceMock;
+}
+
 export function getHTTP(): any
 {
     return hasCordova()? HTTP : HTTPMock;

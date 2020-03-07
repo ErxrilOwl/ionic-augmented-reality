@@ -7,6 +7,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
+import { Device } from "@ionic-native/device/ngx";
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Globalization } from '@ionic-native/globalization/ngx';
@@ -43,6 +44,7 @@ import { StoreModule } from '../store/store.module';
 
 import
 {
+  getDevice,
   getHTTP,
   getNetwork,
   getNativeStorage,
@@ -88,6 +90,7 @@ export function createTranslateLoader(http: HttpClient)
   providers: [
     StatusBar,
     SplashScreen,
+    { provide: Device, useClass: getDevice() },
     { provide: HTTP, useClass: getHTTP() },    //HTTP mocked with empty functions. Calls managed with mocked json data
     { provide: Network, useClass: getNetwork() },
     { provide: NativeStorage, useClass: getNativeStorage() },
