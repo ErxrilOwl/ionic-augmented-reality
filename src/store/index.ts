@@ -4,5 +4,6 @@ export { GpsActions } from './gps/gps.actions';
 export { AccelerometerActions } from './accelerometer/accelerometer.actions';
 export { GyroscopeActions } from './gyroscope/gyroscope.actions';
 export { MagnetometerActions } from './magnetometer/magnetometer.actions';
+export { PlatformDeviceActions } from './platform-device/platform-device.actions';
 //export { PoiApiActions } from './poi-api/poi.actions';
 export { ARActions } from './ar-infos/ar.actions';

@@ -15,6 +15,7 @@ import
 {
   SpinnerActions,
   SplashActions,
+  PlatformDeviceActions,
   AccelerometerActions,
   GyroscopeActions,
   MagnetometerActions,
@@ -34,6 +35,7 @@ import { SplashEpics } from './splash/splash.epics';
 const ACTIONS = [
   SpinnerActions,
   SplashActions,
+  PlatformDeviceActions,
   AccelerometerActions,
   GyroscopeActions,
   MagnetometerActions,

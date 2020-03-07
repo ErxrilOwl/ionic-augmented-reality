@@ -10,6 +10,7 @@ import { AppState, INITIAL_STATE } from './store.model';
 
 import { spinnerReducer } from './spinner/spinner.reducer';
 import { splashReducer } from './splash/splash.reducer';
+import { platformDeviceReducer } from "./platform-device/platform-device.reduces";
 import { gpsReducer } from "./gps/gps.reducer";
 import { accelerometerReducer } from "./accelerometer/accelerometer.reducer";
 import { gyroscopeReducer } from "./gyroscope/gyroscope.reducer";
@@ -50,6 +51,7 @@ export function rootReducer(storage)
     combineReducers({
       spinner: spinnerReducer,
       splash: splashReducer,
+      platformDevice: platformDeviceReducer,
       gps: gpsReducer,
       accelerometer: accelerometerReducer,
       gyroscope: gyroscopeReducer,

@@ -6,12 +6,17 @@ import { Observable } from "rxjs";
 
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { Device } from "@ionic-native/device/ngx";
 
 import { Globalization } from '@ionic-native/globalization/ngx';
 import { defaultLanguage, availableLanguages, sysOptions } from './i18n.constants';
 import { TranslateService } from '@ngx-translate/core';
 
 import { AppState } from '../store/store.model';
+
+import { PlatformDeviceActions } from "../store";
+
+import { Utils } from '../utils/utils';
 
 @Component({
   selector: 'app-root',
@@ -49,6 +54,8 @@ export class AppComponent
 
   constructor(
     private platform: Platform,
+    private device: Device,
+    private pltDevInfos: PlatformDeviceActions,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
     private globalization: Globalization,
@@ -66,6 +73,9 @@ export class AppComponent
       this.statusBar.styleDefault();
       this.splashScreen.hide();
       this.ngRedux.dispatch({ type: 'HIDE_SPLASH' });
+
+      //Initialize some device infos
+      this.initDeviceInfos();
 
       // this language will be used as a fallback when a translation isn't found in the current language
       this.translate.setDefaultLang(defaultLanguage);
@@ -87,6 +97,34 @@ export class AppComponent
         sysOptions.systemLanguage = language;
       }
     });
+  }
+
+  private initDeviceInfos()
+  {
+    let os: 'android' | 'ios' | 'other' =
+      Utils.isAndroid(this.platform) ? 'android' : (Utils.isIos(this.platform) ? 'ios' : 'other');
+
+    let model = this.device.model;
+    if (Utils.isiPhoneX(this.platform, this.device))
+      model = 'iPhoneX';
+    if (Utils.isiPhoneXMax(this.platform, this.device))
+      model = 'iPhoneXMax';
+
+    let integration: 'cordova' | 'electron' | 'none' =
+      this.platform.is('cordova') ? 'cordova' : (this.platform.is('electron') ? 'electron' : 'none');
+
+    this.pltDevInfos.initializeInfos(
+      this.device.manufacturer,
+      model,
+      this.device.uuid,
+      this.device.serial,
+      os,
+      this.device.version,
+      this.device.platform,
+      integration,
+      this.platform.width(),
+      this.platform.height()
+    );
   }
 
   private getSuitableLanguage(language)
