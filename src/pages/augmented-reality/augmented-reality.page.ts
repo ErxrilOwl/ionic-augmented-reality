@@ -18,6 +18,8 @@ import { SensorsService } from "../../services/sensors.service";
 import { constants } from '../../utils/constants';
 
 import { FusionSensorsDTO } from "../../entities/dto/fusionSensorsDTO";
+import { AlertService } from "../../services/alert.service";
+import { TranslateService } from "@ngx-translate/core";
 
 enum ARError {
   INTERNAL_AR_ERROR = "INTERNAL_AR_ERROR",
@@ -64,6 +66,7 @@ export class AugmentedRealityPage implements OnInit, AfterViewInit, OnDestroy
   spotArray: any[] = [];
 
   constructor(
+    private translate: TranslateService,
     private statusBar: StatusBar,
     private screenOrientation: ScreenOrientation,
     private diagnosticService: Diagnostic,
@@ -71,9 +74,10 @@ export class AugmentedRealityPage implements OnInit, AfterViewInit, OnDestroy
     private nativeStorage: NativeStorage,
     private cameraPreview: CameraPreview,
     private gpsService: GpsActions,
-    private spinnerActions: SpinnerActions,
     private sensorsService: SensorsService,
-    private arInfos: ARActions
+    private arInfos: ARActions,
+    private spinnerActions: SpinnerActions,
+    private alertService: AlertService
   ) {
     this.authFlagsRetrieve$ = new Subject<void>();
     this.sensorsErrorsUnsubscribe$ = new Subject<void>();
@@ -376,7 +380,11 @@ export class AugmentedRealityPage implements OnInit, AfterViewInit, OnDestroy
   private manageARSystemsErrors(errorType: ARError)
   {
     this.spinnerActions.dismissLoader();
-    //this.alertService.showSensorsError(errorType);
+    this.translate.get(errorType.toString()).toPromise()
+      .then(text => this.alertService.presentArAlert(null, text, [{
+        text: 'Ok',
+        actions: [{ type: 'AR_SYSTEM_ERROR', payload: errorType.toString() }]
+      }]));
   }
 
   ngOnDestroy()

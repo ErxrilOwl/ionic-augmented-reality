@@ -36,7 +36,7 @@ import { Api } from '../providers/api/api';
 //import { NetworkService } from '../services/network.service';
 import { StorageService } from '../services/storage.service';
 import { SensorsService } from '../services/sensors.service';
-//import { AlertService } from '../services/alert.service';
+import { AlertService } from '../services/alert.service';
 //import { ToastService } from '../services/toast.service';
 
 //Redux store
@@ -105,7 +105,7 @@ export function createTranslateLoader(http: HttpClient)
     //NetworkService,
     StorageService,
     SensorsService,
-    //AlertService,
+    AlertService,
     //ToastService,
     Api,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
