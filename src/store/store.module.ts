@@ -2,7 +2,7 @@ import { CommonModule } from "@angular/common";
 import { NgModule, Optional, SkipSelf } from "@angular/core";
 
 import { NgReduxModule, NgRedux, DevToolsExtension } from "@angular-redux/store";
-//import { NgReduxRouter, NgReduxRouterModule } from '@angular-redux/router';
+import { NgReduxRouter, NgReduxRouterModule } from '@angular-redux/router';
 import { createLogger } from "redux-logger";
 import { persistStore } from 'redux-persist';
 import { FluxStandardAction } from 'flux-standard-action';
@@ -16,6 +16,7 @@ import
   SpinnerActions,
   SplashActions,
   PlatformDeviceActions,
+  GpsActions,
   AccelerometerActions,
   GyroscopeActions,
   MagnetometerActions,
@@ -36,6 +37,7 @@ const ACTIONS = [
   SpinnerActions,
   SplashActions,
   PlatformDeviceActions,
+  GpsActions,
   AccelerometerActions,
   GyroscopeActions,
   MagnetometerActions,
@@ -49,7 +51,7 @@ const RESOLVERS = [
 ];
 
 @NgModule({
-  imports: [CommonModule, NgReduxModule/*, NgReduxRouterModule.forRoot()*/],
+  imports: [CommonModule, NgReduxModule, NgReduxRouterModule.forRoot()],
   providers: [...ACTIONS, ...RESOLVERS]
 })
 export class StoreModule
@@ -62,7 +64,7 @@ export class StoreModule
     devTools: DevToolsExtension,
     //storageService: StorageService,
     rootEpics: RootEpics,
-    //ngReduxRouter: NgReduxRouter,
+    ngReduxRouter: NgReduxRouter,
   )
   {
     if (parentModule)
@@ -111,8 +113,8 @@ export class StoreModule
     );
 
     // Enable syncing of Angular router state with our Redux store.
-    //if (ngReduxRouter)
-    //ngReduxRouter.initialize();
+    if (ngReduxRouter)
+      ngReduxRouter.initialize();
 
     persistStore(ngRedux);
 

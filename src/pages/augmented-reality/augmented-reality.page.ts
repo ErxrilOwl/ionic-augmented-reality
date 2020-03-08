@@ -383,7 +383,7 @@ export class AugmentedRealityPage implements OnInit, AfterViewInit, OnDestroy
     this.translate.get(errorType.toString()).toPromise()
       .then(text => this.alertService.presentArAlert(null, text, [{
         text: 'Ok',
-        actions: [{ type: 'AR_SYSTEM_ERROR', payload: errorType.toString() }]
+        actions: [{ type: '@angular-redux/router::UPDATE_LOCATION', payload: '/home' }]
       }]));
   }
 
