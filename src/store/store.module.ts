@@ -25,7 +25,7 @@ import
 } from "./index";
 
 import { RootEpics } from './epics';
-//import rootSaga from './sagas';
+import rootSaga from './sagas';
 
 import { SplashEpics } from './splash/splash.epics';
 
@@ -122,6 +122,6 @@ export class StoreModule
     epicMiddleware.run(rootEpics.createEpics());
 
     //Executing sagas
-    //sagaMiddleware.run(rootSaga);
+    sagaMiddleware.run(rootSaga);
   }
 }
