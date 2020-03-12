@@ -56,26 +56,13 @@ function* retrievePois()
     {
         const filteredGpsCoordinates: GpsCoordinatesDTO = yield select(getFilteredGpsCoordinates);
 
-        //Create redux-offline action to launch (provider action in poi.actions.ts)
-        /*let url = environment.mock ?
-            '../../assets/mock-data/poi-list.json' :
-            environment.baseUrl + environment.apiVersion + constants.poiListEndpoint + "?" +
-            PoiApiActions.LATITUDE_URL_KEY + "=" + filteredGpsCoordinates.latitude + "&" +
-            PoiApiActions.LONGITUDE_URL_KEY + "=" + filteredGpsCoordinates.longitude + "&" +
-            PoiApiActions.RADIUS_URL_KEY + "=" + constants.RADAR_POI_RADIUS;
-
+        //Launch ws retrieve pois list epic action
         let poiRequestAction = {
-            type: PoiApiActions.RETRIEVE_POI,
-            meta: {
-                offline: {
-                    effect: { url: url, method: 'GET' },
-                    commit: { type: PoiApiActions.RETRIEVE_POI_COMPLETED },
-                    rollback: { type: PoiApiActions.RETRIEVE_POI_ERROR },
-                }
-            }
+            type: 'RETRIEVE_POIS',
+            payload: { latitude: filteredGpsCoordinates.latitude, longitude: filteredGpsCoordinates.longitude, radius: constants.RADAR_POI_RADIUS }
         };
 
-        yield put(poiRequestAction);*/
+        yield put(poiRequestAction);
     });
 }
 

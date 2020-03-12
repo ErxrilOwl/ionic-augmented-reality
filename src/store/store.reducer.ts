@@ -15,8 +15,8 @@ import { gpsReducer } from "./gps/gps.reducer";
 import { accelerometerReducer } from "./accelerometer/accelerometer.reducer";
 import { gyroscopeReducer } from "./gyroscope/gyroscope.reducer";
 import { magnetometerReducer } from "./magnetometer/magnetometer.reducer";
-//import { poiReducer } from "./poi-api/poi.reducer";
 import { arReducer } from './ar-infos/ar.reducer';
+import { wsReducer } from './ws/ws.reducer';
 
 export default function reduceReducers(...reducers)
 {
@@ -56,8 +56,8 @@ export function rootReducer(storage)
       accelerometer: accelerometerReducer,
       gyroscope: gyroscopeReducer,
       magnetometer: magnetometerReducer,
-      //poi: poiReducer,
-      ar: arReducer
+      ar: arReducer,
+      ws: wsReducer
     }),
     mainReducer
   );

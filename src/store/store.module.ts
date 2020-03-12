@@ -20,14 +20,15 @@ import
   AccelerometerActions,
   GyroscopeActions,
   MagnetometerActions,
-  //PoiApiActions,
-  ARActions
+  ARActions,
+  WsActions
 } from "./index";
 
 import { RootEpics } from './epics';
 import rootSaga from './sagas';
 
 import { SplashEpics } from './splash/splash.epics';
+import { WsEpics } from './ws/ws.epics';
 
 //import { StorageService } from "../services/storage.service";
 
@@ -41,13 +42,14 @@ const ACTIONS = [
   AccelerometerActions,
   GyroscopeActions,
   MagnetometerActions,
-  //PoiApiActions,
-  ARActions
+  ARActions,
+  WsActions
 ];
 
 const RESOLVERS = [
   RootEpics,
-  SplashEpics
+  SplashEpics,
+  WsEpics
 ];
 
 @NgModule({

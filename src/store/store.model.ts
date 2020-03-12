@@ -6,8 +6,8 @@ import { GpsState, INITIAL_STATE_GPS } from './gps/gps.model';
 import { AccelerometerState, INITIAL_STATE_ACCELEROMETER } from './accelerometer/accelerometer.model';
 import { GyroscopeState, INITIAL_STATE_GYROSCOPE } from './gyroscope/gyroscope.model';
 import { MagnetometerState, INITIAL_STATE_MAGNETOMETER } from './magnetometer/magnetometer.model';
-//import { PoiApiState, INITIAL_STATE_POI } from './poi-api/poi.model';
 import { ARState, INITIAL_STATE_AR } from './ar-infos/ar.model';
+import { WsState, INITIAL_STATE_WEB_SERVICES } from './ws/ws.model';
 
 export interface AppState
 {
@@ -18,8 +18,8 @@ export interface AppState
     accelerometer: AccelerometerState,
     gyroscope: GyroscopeState,
     magnetometer: MagnetometerState,
-    //poi: PoiApiState
-    ar: ARState
+    ar: ARState,
+    ws: WsState
 }
 
 export const INITIAL_STATE: AppState = {
@@ -31,7 +31,8 @@ export const INITIAL_STATE: AppState = {
     gyroscope: INITIAL_STATE_GYROSCOPE,
     magnetometer: INITIAL_STATE_MAGNETOMETER,
     //poi: INITIAL_STATE_POI,
-    ar: INITIAL_STATE_AR
+    ar: INITIAL_STATE_AR,
+    ws: INITIAL_STATE_WEB_SERVICES
 };
 
 export interface PayloadAction extends Action

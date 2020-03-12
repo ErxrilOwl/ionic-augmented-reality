@@ -31,6 +31,7 @@ import { SpinnerModule } from '../components/spinner/spinner.module';
 
 //Providers
 import { Api } from '../providers/api/api';
+import { PoisProvider } from '../providers';
 
 //Services
 //import { NetworkService } from '../services/network.service';
@@ -107,6 +108,7 @@ export function createTranslateLoader(http: HttpClient)
     SensorsService,
     AlertService,
     //ToastService,
+    PoisProvider,
     Api,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
