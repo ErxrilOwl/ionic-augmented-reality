@@ -90,11 +90,11 @@ export class AugmentedRealityPage implements OnInit, AfterViewInit, OnDestroy
     this.statusBar.hide();
     
     this.os$.pipe(first()).subscribe(os => {
-      this.os = os;
+      this.os = os.toLowerCase();
 
-      if (os === 'ios')
+      if (this.os === 'ios')
         this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.LANDSCAPE_SECONDARY);
-      else if (os === 'android')
+      else if (this.os === 'android')
         this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.LANDSCAPE_PRIMARY);
     });
 
