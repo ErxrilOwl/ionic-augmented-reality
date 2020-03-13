@@ -11,6 +11,7 @@ import createSagaMiddleware from 'redux-saga';
 
 import { rootReducer } from "./store.reducer";
 import { AppState, INITIAL_STATE } from "./store.model";
+
 import
 {
   SpinnerActions,
@@ -32,7 +33,7 @@ import { WsEpics } from './ws/ws.epics';
 
 //import { StorageService } from "../services/storage.service";
 
-//import { Converter } from "../util/converter";
+import { Converter } from "../utils/converter";
 
 const ACTIONS = [
   SpinnerActions,
@@ -89,7 +90,15 @@ export class StoreModule
     {
       if (action.payload)
       {
-
+        switch (action.type)
+        {
+          case GpsActions.SET_COORDINATES:
+            action.payload = Converter.gpsInfoDTOToGpsCoordinatesDTO(action.payload);
+            break;
+          case WsActions.RETRIEVE_POIS_SUCCESS:
+            action.payload = Converter.poiDTOArrayToPoiArray(action.payload);
+            break;
+        }
       }
 
       return next(action);

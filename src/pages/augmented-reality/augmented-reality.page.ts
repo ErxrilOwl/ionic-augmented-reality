@@ -98,6 +98,8 @@ export class AugmentedRealityPage implements OnInit, AfterViewInit, OnDestroy
         this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.LANDSCAPE_PRIMARY);
     });
 
+    this.spinnerActions.showLoader();
+
     try
     {
       this.cameraPresent = await this.diagnosticService.isCameraPresent();
@@ -114,7 +116,7 @@ export class AugmentedRealityPage implements OnInit, AfterViewInit, OnDestroy
 
     try
     {
-      let data = this.nativeStorage.getItem(constants.FIRST_LOCATION_PERMISSION_REQUEST);
+      let data = await this.nativeStorage.getItem(constants.FIRST_LOCATION_PERMISSION_REQUEST);
       
       console.log("first permission flag: ", data);
       if (!data)
@@ -142,8 +144,6 @@ export class AugmentedRealityPage implements OnInit, AfterViewInit, OnDestroy
       this.manageARSystemsErrors(ARError.INTERNAL_AR_ERROR);
       return;
     }
-
-    this.spinnerActions.showLoader();
 
     //Start fused orientation service (accelerometer, gyroscope, magnetometer)
     //The data is not subscribed yet. The app initially verifies if the device as accelerometer, gyroscope and magnetomer,

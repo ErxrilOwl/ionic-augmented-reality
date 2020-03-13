@@ -1,9 +1,5 @@
 import { select, call, put, takeEvery, takeLatest, take, all } from 'redux-saga/effects';
 
-//import { PoiApiActions } from './poi-api/poi.actions';
-
-import { environment } from '../environments/environment';
-
 import { AugmentedRealityUtils } from '../utils/utils';
 import { constants } from '../utils/constants';
 
@@ -13,7 +9,7 @@ import { FusionSensorsDTO } from '../entities/dto/fusionSensorsDTO';
 
 const getGpsCoordinates = state => state.gps.coordinates;
 const getFilteredGpsCoordinates = state => state.gps.distanceFilteredCoordinates;
-const getPois = state => state.poi.poi;
+const getPois = state => state.ws.pois;
 const getPinArray = state => state.ar.pinArray;
 const getFusionOrientation = state => state.ar.fusionCoordinates;
 const getFov = state => state.ar.cameraFov;
@@ -68,9 +64,9 @@ function* retrievePois()
 
 function* calculatePinArray()
 {
-    console.log("Registering saga calculatePinArray on poi/RETRIEVE_POI_COMPLETED");
+    console.log("Registering saga calculatePinArray on poi/RETRIEVE_POIS_SUCCESS");
 
-    yield takeEvery("RETRIEVE_POI_COMPLETED", function* ()
+    yield takeEvery("RETRIEVE_POIS_SUCCESS", function* ()
     {
         const poiList: Poi[] = yield select(getPois);
         const filteredGpsCoordinates: GpsCoordinatesDTO = yield select(getFilteredGpsCoordinates);
