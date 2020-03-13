@@ -18,7 +18,7 @@ export class PoisProvider
   {
     //Only if mock flag true, retrieve data from json mock
     if (environment.mock)
-      return from(this.api.debugGet('assets/mock/poi-list.json')).pipe(delay(2000), timeout(3000));
+      return from(this.api.debugGet('assets/mock-data/poi-list.json')).pipe(delay(2000), timeout(3000));
 
     let urlPoisList = environment.baseUrl + environment.baseVersion + constants.poiListEndpoint + 
         '?latitude=' + latitude +
