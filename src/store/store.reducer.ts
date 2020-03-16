@@ -1,8 +1,7 @@
-//import { routerReducer } from "@angular-redux/router";
 //import { composeReducers, defaultFormReducer } from "@angular-redux/form";
 
 import { combineReducers } from "redux";
-//import { routerReducer } from '@angular-redux/router';
+import { routerReducer } from '@angular-redux/router';
 
 //import { persistReducer } from 'redux-persist';
 
@@ -49,6 +48,7 @@ export function rootReducer(storage)
 
   return reduceReducers(
     combineReducers({
+      router: routerReducer,
       spinner: spinnerReducer,
       splash: splashReducer,
       platformDevice: platformDeviceReducer,

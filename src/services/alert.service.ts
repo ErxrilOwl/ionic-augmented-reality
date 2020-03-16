@@ -9,7 +9,7 @@ export class AlertService
 {
     constructor(private alertController: AlertController, private ngRedux: NgRedux<AppState>) { }
 
-    async presentArAlert(header?: string, subHeader?: string, buttonsInfos?: {
+    async presentArAlert(header?: string, subHeader?: string, cssClass?: string, buttonsInfos?: {
         text: string,
         cssClass?: string,
         role?: string,
@@ -47,7 +47,7 @@ export class AlertService
         }
 
         let options = {
-            cssClass: 'ar-alert',
+            cssClass: 'ar-alert' + (cssClass && cssClass.length ? ' ' + cssClass : ''),
             backdropDismiss: false,
         };
 

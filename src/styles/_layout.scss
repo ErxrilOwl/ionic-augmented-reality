@@ -222,6 +222,12 @@ ion-content.ar-container {
 }
 
 ion-alert.ar-alert {
+    .alert-head {
+        h2 {
+            font-size: 18px !important;
+        }
+    }
+
     button {
         color: $c-water-green !important;
     }
