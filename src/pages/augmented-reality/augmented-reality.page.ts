@@ -153,8 +153,6 @@ export class AugmentedRealityPage implements OnInit, AfterViewInit, OnDestroy
     this.accelerometerCoordinatesError$
       .pipe(
         takeUntil(this.sensorsErrorsUnsubscribe$),
-        takeUntil(this.gyroscopeCoordinatesError$),
-        takeUntil(this.magnetometerCoordinatesError$),
         filter(data => data != null && data != undefined))
       .subscribe(flag => {
         if (flag)
@@ -167,8 +165,6 @@ export class AugmentedRealityPage implements OnInit, AfterViewInit, OnDestroy
     this.gyroscopeCoordinatesError$
       .pipe(
         takeUntil(this.sensorsErrorsUnsubscribe$),
-        takeUntil(this.accelerometerCoordinatesError$),
-        takeUntil(this.magnetometerCoordinatesError$),
         filter(data => data != null && data != undefined))
       .subscribe(flag => {
         if (flag)
@@ -181,8 +177,6 @@ export class AugmentedRealityPage implements OnInit, AfterViewInit, OnDestroy
     this.magnetometerCoordinatesError$
       .pipe(
         takeUntil(this.sensorsErrorsUnsubscribe$),
-        takeUntil(this.accelerometerCoordinatesError$),
-        takeUntil(this.magnetometerCoordinatesError$),
         filter(data => data != null && data != undefined))
       .subscribe(flag => {
         if (flag)
@@ -217,8 +211,12 @@ export class AugmentedRealityPage implements OnInit, AfterViewInit, OnDestroy
         }
       }
 
-      //Here camera is present and is authorized. Start it anc continue to check/request other permissions
-      this.initCamera();
+      //Here camera is present and is authorized. Start it and continue to check/request other permissions
+      //Start camera with a delay to let landscape mode and permission requests
+      setTimeout(() =>
+      {
+        this.initCamera();
+      }, constants.CAMERA_INIT_DELAY);
 
       if (!this.locationEnabled)
       {

@@ -9,7 +9,7 @@ import { FusionSensorsDTO } from '../entities/dto/fusionSensorsDTO';
 
 const getGpsCoordinates = state => state.gps.coordinates;
 const getFilteredGpsCoordinates = state => state.gps.distanceFilteredCoordinates;
-const getPois = state => state.ws.pois;
+const getPois = state => state.ws.pois.data;
 const getPinArray = state => state.ar.pinArray;
 const getFusionOrientation = state => state.ar.fusionCoordinates;
 const getFov = state => state.ar.cameraFov;
@@ -90,7 +90,7 @@ function* calculatePinArray()
                 //The array is created with pin near the user (maximum RADAR_POI_RADIUS) and every pin
                 //has bearing and distance informations
                 pin = AugmentedRealityUtils.relativePosition(pin, filteredGpsCoordinates);
-                //console.log("Pin after relative position update: ", pin);
+                console.log("Pin after relative position update: ", pin);
 
                 if (!(pin['distance']) || +pin['distance']['meter'] > constants.RADAR_POI_RADIUS)
                     continue;
