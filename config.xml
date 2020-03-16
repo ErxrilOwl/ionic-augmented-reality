@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="io.ionic.starter" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>MyApp</name>
-    <description>An awesome Ionic/Cordova app.</description>
-    <author email="hi@ionicframework.com" href="http://ionicframework.com/">Ionic Framework Team</author>
+<widget android-packageName="it.kitcarson88.locationAR" android-versionCode="1" id="it.kitcarson88.locationAR" ios-CFBundleIdentifier="it.kitcarson88.locationAR" ios-CFBundleVersion="1" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>Location AR</name>
+    <description>An Ionic 5 app with a simple location based augmented reality</description>
+    <author email="colsimo88@gmail.com" href="https://github.com/KitCarson88">Simone Colazzo</author>
     <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />

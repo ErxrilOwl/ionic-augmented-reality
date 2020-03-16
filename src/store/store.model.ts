@@ -24,13 +24,12 @@ export interface AppState
 
 export const INITIAL_STATE: AppState = {
     spinner: false,
-    splash: 'inactive',
+    splash: 'active',
     platformDevice: INITIAL_STATE_PLATFORM_DEVICE,
     gps: INITIAL_STATE_GPS,
     accelerometer: INITIAL_STATE_ACCELEROMETER,
     gyroscope: INITIAL_STATE_GYROSCOPE,
     magnetometer: INITIAL_STATE_MAGNETOMETER,
-    //poi: INITIAL_STATE_POI,
     ar: INITIAL_STATE_AR,
     ws: INITIAL_STATE_WEB_SERVICES
 };
